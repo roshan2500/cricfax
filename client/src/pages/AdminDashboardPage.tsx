@@ -153,7 +153,6 @@ export const AdminDashboardPage: React.FC = () => {
             <thead>
               <tr className="text-left text-xs text-gray-500 border-b border-gray-200">
                 <th className="py-2 pr-4 font-medium">Title</th>
-                <th className="py-2 pr-4 font-medium">Author</th>
                 <th className="py-2 pr-4 font-medium">Status</th>
                 <th className="py-2 pr-4 font-medium">Views</th>
                 <th className="py-2 text-right font-medium">Actions</th>
@@ -166,7 +165,6 @@ export const AdminDashboardPage: React.FC = () => {
                     <div className="font-medium text-gray-900 max-w-md truncate">{article.title}</div>
                     <div className="text-xs text-gray-400">{article.category?.name || 'Cricket'}</div>
                   </td>
-                  <td className="py-3 pr-4 text-gray-500">{article.author?.full_name || 'Admin'}</td>
                   <td className="py-3 pr-4">
                     <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
                       article.status === 'PUBLISHED' ? 'bg-green-50 text-green-700' : 'bg-yellow-50 text-yellow-700'

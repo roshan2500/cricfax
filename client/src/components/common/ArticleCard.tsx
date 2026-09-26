@@ -25,11 +25,11 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
   if (featured) {
     return (
       <Link to={`/articles/${article.slug}`} className="group block">
-        <div className="relative rounded-lg overflow-hidden bg-gray-100 aspect-[2/1] mb-4">
+        <div className="relative rounded-lg overflow-hidden bg-gray-50 mb-4">
           <img
             src={article.featured_image_url}
             alt={article.title}
-            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+            className="w-full h-auto rounded-lg group-hover:scale-[1.01] transition-transform duration-300"
           />
         </div>
         <div className="space-y-2">
@@ -46,14 +46,6 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
           <p className="text-gray-600 text-base leading-relaxed line-clamp-2">
             {article.excerpt}
           </p>
-          <div className="flex items-center gap-2 pt-1">
-            <img
-              src={article.author?.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80'}
-              alt={article.author?.full_name || 'Author'}
-              className="w-6 h-6 rounded-full object-cover"
-            />
-            <span className="text-sm text-gray-600">{article.author?.full_name || 'Staff'}</span>
-          </div>
         </div>
       </Link>
     );
@@ -62,11 +54,11 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
   return (
     <Link to={`/articles/${article.slug}`} className="group block">
       <article className="flex flex-col h-full">
-        <div className="relative rounded-lg overflow-hidden bg-gray-100 aspect-[16/10] mb-3">
+        <div className="relative rounded-lg overflow-hidden bg-gray-50 mb-3">
           <img
             src={article.featured_image_url}
             alt={article.title}
-            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+            className="w-full h-auto rounded-lg group-hover:scale-[1.01] transition-transform duration-300"
             loading="lazy"
           />
         </div>
@@ -83,9 +75,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
             {article.excerpt}
           </p>
           <div className="mt-auto flex items-center gap-2 text-xs text-gray-400">
-            <span>{article.author?.full_name || 'Staff'}</span>
-            <span>·</span>
-            <span>{article.read_time_minutes} min</span>
+            <span>{article.read_time_minutes} min read</span>
           </div>
         </div>
       </article>

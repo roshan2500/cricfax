@@ -108,30 +108,22 @@ export const ArticleDetailPage: React.FC = () => {
         </p>
       </header>
 
-      {/* Author byline */}
-      <div className="flex items-center gap-3 py-4 border-y border-gray-100 mb-8">
-        <Link to={`/authors/${article.author?.username || 'admin'}`}>
-          <img
-            src={article.author?.avatar_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80'}
-            alt={article.author?.full_name}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-        </Link>
+      {/* Article meta bar */}
+      <div className="flex items-center justify-between py-3 border-y border-gray-100 mb-8 text-xs text-gray-500">
         <div>
-          <Link to={`/authors/${article.author?.username || 'admin'}`} className="text-sm font-medium text-gray-900 hover:text-red-600">
-            {article.author?.full_name}
-          </Link>
-          <p className="text-xs text-gray-400">{article.read_time_minutes} min read · {Number(article.views_count).toLocaleString()} views</p>
+          <span>{article.read_time_minutes} min read</span>
+          <span className="mx-2">·</span>
+          <span>{Number(article.views_count).toLocaleString()} views</span>
         </div>
-        <button onClick={handleCopyLink} className="ml-auto text-xs text-gray-400 hover:text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 hover:bg-gray-50 transition-colors">Share</button>
+        <button onClick={handleCopyLink} className="text-xs text-gray-400 hover:text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 hover:bg-gray-50 transition-colors">Share</button>
       </div>
 
-      {/* Featured image */}
+      {/* Featured image (original format, uncropped) */}
       <div className="rounded-lg overflow-hidden mb-8">
         <img
           src={article.featured_image_url}
           alt={article.title}
-          className="w-full max-h-[440px] object-cover"
+          className="w-full h-auto rounded-lg"
         />
       </div>
 
@@ -147,7 +139,7 @@ export const ArticleDetailPage: React.FC = () => {
                   <img
                     src={url}
                     alt={alt || 'Article image'}
-                    className="w-full rounded-lg object-cover max-h-[480px]"
+                    className="w-full h-auto rounded-lg"
                     loading="lazy"
                   />
                   {alt && (

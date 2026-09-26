@@ -138,6 +138,27 @@ export const ArticleDetailPage: React.FC = () => {
       {/* Article body */}
       <div className="prose prose-gray max-w-none text-gray-700 text-[16px] leading-[1.8]">
         {article.content.split('\n\n').map((paragraph, index) => {
+          if (paragraph.trim().startsWith('![')) {
+            const match = paragraph.trim().match(/^!\[(.*?)\]\((.*?)\)$/);
+            if (match) {
+              const [, alt, url] = match;
+              return (
+                <figure key={index} className="my-6">
+                  <img
+                    src={url}
+                    alt={alt || 'Article image'}
+                    className="w-full rounded-lg object-cover max-h-[480px]"
+                    loading="lazy"
+                  />
+                  {alt && (
+                    <figcaption className="text-center text-xs text-gray-400 mt-2 italic">
+                      {alt}
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            }
+          }
           if (paragraph.startsWith('### ')) {
             return (
               <h3 key={index} className="text-xl font-bold text-gray-900 mt-8 mb-3">

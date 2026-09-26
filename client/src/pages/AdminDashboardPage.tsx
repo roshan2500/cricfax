@@ -290,10 +290,39 @@ export const AdminDashboardPage: React.FC = () => {
                   className="w-full border border-gray-200 rounded-lg p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Content</label>
-                <textarea rows={8} required value={formData.content}
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-sm font-medium text-gray-700">Content</label>
+                  <div className="flex gap-2 text-xs">
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({ ...prev, content: prev.content + '\n\n![Image Caption](https://image-url-here.jpg)\n\n' }))}
+                      className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors font-mono"
+                    >
+                      + Insert Image
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({ ...prev, content: prev.content + '\n\n### Heading Title\n\n' }))}
+                      className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors font-mono"
+                    >
+                      + Heading
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setFormData(prev => ({ ...prev, content: prev.content + '\n\n> Quote text here\n\n' }))}
+                      className="px-2 py-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded transition-colors font-mono"
+                    >
+                      + Quote
+                    </button>
+                  </div>
+                </div>
+                <textarea rows={10} required value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                  placeholder="Write your article... Use ![Caption](URL) to add images anywhere!"
                   className="w-full border border-gray-200 rounded-lg p-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500" />
+                <p className="text-xs text-gray-400 mt-1">
+                  Tip: To place an image inside your text, use: <code className="bg-gray-100 px-1 py-0.5 rounded text-gray-700">![Photo Caption](https://url.com/photo.jpg)</code>
+                </p>
               </div>
               <div className="flex items-center gap-6">
                 <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
